@@ -42,11 +42,13 @@ export class ItemDetailContainer extends React.Component {
 		let realKey = alias || key;
 		let subItems = [].concat(item[realKey]);
 			
-		if (subItems.length > 0) {
+		if (subItems.length > 0 && subItems[0] !== "TODO") {
 			item[realKey] = subItems.map(f => this.setItemInfo(f, key, allSubItems));
-
-			this.setState({item: item});
+		} else {
+			item[realKey] = "Unknown";
 		}
+
+		this.setState({item: item});
 	}
 	
 	setItemInfo(item, key, allItems) {
@@ -89,6 +91,11 @@ export class ItemDetailContainer extends React.Component {
 
 	// some of the items have bad urls so we fix them here
 	updateUrl(item) {
+		// fix for goofy data in locations
+		if (Array.isArray(item.url)) {
+			item.url = item.url[0];
+		}
+			
 		if (item.url.indexOf(item.id) === -1) {
 			let index = item.url.lastIndexOf("/");
 			item.url = item.url.substring(0, index + 1) + item.id;
