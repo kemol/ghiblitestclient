@@ -1,13 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { ItemList } from '../components/ItemList';
 
-const ItemList = (props) => (
-	<ul>
-		{props.items.map(item => <li><Link to={`${props.path}/${item.id}`}>{ 'name' in item ? item.name : item.title}</Link></li>)}
-	</ul>
-);
-
-export class ListContainer extends React.Component {
+export class ItemListContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { items: [] };
@@ -18,8 +12,7 @@ export class ListContainer extends React.Component {
 		const endpoint = `https://ghibliapi.herokuapp.com${path}`;
   	fetch(endpoint)
       .then(response => response.json())
-      .then(
-       results => this.setState({ items: results }));
+      .then(results => this.setState({ items: results }));
 	}
 
 	componentDidMount() {

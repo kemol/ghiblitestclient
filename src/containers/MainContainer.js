@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { FilmContainer } from './FilmContainer';
 import { ItemContainer } from './ItemContainer';
 import { MenuContainer } from './MenuContainer';
 /*
@@ -14,8 +15,9 @@ export const MainContainer = props => (
   	<div className="main-layout">
     	<main>
       	  <Switch>
-        	  <Route path="/films" component={ItemContainer} />
+        	  <Route path="/films" component={FilmContainer} />
           	<Route path="/people" component={ItemContainer} />
+          	<Route path="/species" component={ItemContainer} />
   	        <Route path="/locations" component={ItemContainer} />
     	      <Route path="/vehicles" component={ItemContainer} />
       	    <Redirect to="/films" />
