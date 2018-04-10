@@ -6,14 +6,26 @@ export class ItemListContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { items: [] };
-		this.fetchItems = this.fetchItems.bind(this);
 	}
 	
 	fetchItems(path) {
 		const endpoint = `${Constants.apiBase}${path}`;
   	fetch(endpoint)
       .then(response => response.json())
-      .then(results => this.setState({ items: results }));
+      .then(results => this.sortResults(results));
+	}
+	
+	sortResults(results, up = true) {
+		if (results.length > 0) {
+			let key = "name" in results[0] ? "name" : "title";
+			let items = results.sort((a, b) => {
+				let titleA = a[key].replace(Constants.theRegex, "");
+				let titleB = b[key].replace(Constants.theRegex, "");
+				return up ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+			});
+			
+			this.setState({ items: items });
+		}
 	}
 
 	componentDidMount() {

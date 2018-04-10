@@ -12,6 +12,7 @@ export const Constants = {
 		vehicles: "vehicles"
 	},
 	peopleAliases: ["people", "residents", "pilot"],
-	excludeKeys: ['id', 'url']
+	excludeKeys: ['id', 'url'],
+	theRegex: /^The /
 };
 
