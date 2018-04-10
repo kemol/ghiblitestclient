@@ -7,6 +7,7 @@ const dark = "#033922";
 const middle = "#BCE5D4";
 const light = "#E7F3EE";
 const grey = "#6E7F78";
+const width = "400px";
 
 export const styles = {
 	header: 
@@ -48,28 +49,33 @@ export const styles = {
  	 	color: middle,
   	textTransform: "uppercase"
   },
-  label:
+  sorter:
   {
   	color: dark,
-  	padding: padding,
-  	fontSize: ".8em"
+  	paddingLeft: 10,
+  	fontSize: ".8em",
+  	width: width
   },
   button:
   {
-		margin: "0 5px 0 0",
-  	padding: 5,
-  	border: "1px solid " + middle,
+		margin: 0,
+  	padding: "5px 0",
+  	border: 0,
+  	outline: "none",
+  	borderBottom: "1px solid " + light,
   	background: grey,
   	fontFamily: "inherit",
-  	fontSize: ".8em",
+  	fontSize: ".9em",
   	color: middle,
-  	width: 100
+  	cursor: "pointer",
+  	display: inlineBlock,
+  	width: "33%"
   },
   ul:
   {
   	margin:0,
   	padding: padding,
-  	width: 400,
+  	width: width,
   	listStyleType: none
   },
   li:
@@ -81,20 +87,31 @@ export const styles = {
   liLink:
   {
   	display: inlineBlock,
-  	paddingLeft: 10,
-  	paddingBottom: 10,
-  	textDecoration: none,
+  	padding: "0 0 10px 10px",
   	color: light,
+  	textDecoration: none,
   	width: width100
   },
-  liSpan:
+  titleSpan:
+  {
+  	display: inlineBlock,
+  	width: "75%",
+  },
+  rtSpan:
+  {
+  	fontSize: ".6em",
+  	display: inlineBlock,
+  	color: middle,
+  	width: "5%",
+  	textAlign: "center",
+  },
+  dateSpan:
   {
   	fontSize: ".8em",
   	display: inlineBlock,
   	color: dark,
-  	width: 80,
-  	textAlign: "center",
-  	float: "right"
+  	width: "15%",
+  	textAlign: "right",
   },
   detailLi:
   {
@@ -140,4 +157,16 @@ export const styles = {
   	fontSize: ".9em",
   	width: width100
   },
+  light: 
+  {
+  	color: light
+  },
+  middle: 
+  {
+  	color: middle
+  },
+  dark: 
+  {
+  	color: dark
+  }
  };
