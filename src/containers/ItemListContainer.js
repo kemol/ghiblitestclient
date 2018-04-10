@@ -1,4 +1,5 @@
 import React from 'react';
+import { Constants } from '../Constants';
 import { ItemList } from '../components/ItemList';
 
 export class ItemListContainer extends React.Component {
@@ -9,7 +10,7 @@ export class ItemListContainer extends React.Component {
 	}
 	
 	fetchItems(path) {
-		const endpoint = `https://ghibliapi.herokuapp.com${path}`;
+		const endpoint = `${Constants.apiBase}${path}`;
   	fetch(endpoint)
       .then(response => response.json())
       .then(results => this.setState({ items: results }));
@@ -26,11 +27,7 @@ export class ItemListContainer extends React.Component {
 	}
 	
 	render() {
-		return (
-			<div>
-  	    <ItemList path={this.props.match.path} items={this.state.items} />
-			</div>
-		);
+		return <ItemList path={this.props.match.path} items={this.state.items} />;
 	}
 }
 

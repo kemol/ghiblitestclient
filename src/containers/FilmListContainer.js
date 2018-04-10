@@ -4,11 +4,7 @@ import { FilmList } from '../components/FilmList';
 
 export class FilmListContainer extends ItemListContainer {
 	render() {
-		return (
-			<div>
-  	    <FilmList path={this.props.match.path} items={this.state.items} />
-			</div>
-		);
+		return <FilmList path={this.props.match.path} items={this.state.items} />;
 	}
 }
 

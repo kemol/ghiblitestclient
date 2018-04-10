@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import '../styles/App.css';
 import { MainContainer } from './MainContainer';
+import '../styles/App.css';
 
 export default class App extends React.Component {
 	render() {
@@ -13,5 +12,3 @@ export default class App extends React.Component {
   	);
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))

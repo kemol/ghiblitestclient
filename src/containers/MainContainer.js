@@ -1,28 +1,22 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { Constants } from '../Constants';
 import { FilmContainer } from './FilmContainer';
 import { ItemContainer } from './ItemContainer';
 import { MenuContainer } from './MenuContainer';
-/*
-const FilmsContainer = () => <ListContainer type="films" />;
-const PeopleContainer = () => <ListContainer type="people" />;
-const LocationsContainer = () => <ListContainer type="locations" />;
-const VehiclesContainer = () => <ListContainer type="vehicles" />;
-*/
+
 export const MainContainer = props => (
 	<div>
 		<MenuContainer />
-  	<div className="main-layout">
-    	<main>
-      	  <Switch>
-        	  <Route path="/films" component={FilmContainer} />
-          	<Route path="/people" component={ItemContainer} />
-          	<Route path="/species" component={ItemContainer} />
-  	        <Route path="/locations" component={ItemContainer} />
-    	      <Route path="/vehicles" component={ItemContainer} />
-      	    <Redirect to="/films" />
-        	</Switch>
-  	  </main>
-	  </div>
+    <main>
+      <Switch>
+     	  <Route path={`/${Constants.items.films}`} component={FilmContainer} />
+       	<Route path={`/${Constants.items.people}`} component={ItemContainer} />
+       	<Route path={`/${Constants.items.species}`} component={ItemContainer} />
+  	    <Route path={`/${Constants.items.locations}`} component={ItemContainer} />
+        <Route path={`/${Constants.items.vehicles}`} component={ItemContainer} />
+        <Redirect to={`/${Constants.items.films}`} />
+     	</Switch>
+  	</main>
   </div>
 );

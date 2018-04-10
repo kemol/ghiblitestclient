@@ -1,41 +1,23 @@
-import React from 'react';
-import { ItemDetail } from '../components/ItemDetail';
+import { Constants } from '../Constants';
 import { ItemDetailContainer } from './ItemDetailContainer';
-
-const apiBase = "https://ghibliapi.herokuapp.com";
-const detailItems = ["people", "species", "locations", "vehicles"];
 
 export class FilmDetailContainer extends ItemDetailContainer {
 	getItemDetails(film) {
-		// get lists of other item types
-		// match ids to get names
-		this.updateUrl(film);
+		this.cleanItem(film);
 		
-		detailItems.forEach(d => this.getAllItems(d).then(items => this.setItems(film, d, items)));
+		let detailItems = Object.keys(Constants.items);
+		detailItems.forEach(d => {
+			let type = Constants.items[d];
+			if (type in film) {
+				this.getAllItems(type).then(items => this.setItems(film, type, items));
+			}
+		});
 	}
 	
 	// the data on the film objects is incomplete so we're actually getting 
-	// all the other objects to match against their films property 
-	setItems(film, key, allSubItems) {
-		let subItems = [];
-		
-		for (let i = 0; i < allSubItems.length; i++) {
-			let subItem = allSubItems[i];
-			let subFilms = [].concat(subItem.films);
-			let matchFilm = subFilms.find(f => f === film.url);
-			if (matchFilm) {
-				subItem.type = key;
-				subItems.push(subItem);
-			}
-		}
-		
-		film[key] = subItems.length > 0 ? subItems : "Unknown";
-
-		this.setState({ item: film });
-	}
-	
+	// all the other objects to match the current film against their films property 
 	getAllItems(type) {
-		const endpoint = `${apiBase}/${type}`;
+		const endpoint = `${Constants.apiBase}/${type}`;
   	return fetch(endpoint)
       .then(response => response.json())
       .then(result =>
@@ -46,6 +28,27 @@ export class FilmDetailContainer extends ItemDetailContainer {
       	
       	return result;
       });
+	}
+	
+	setItems(film, key, allSubItems) {
+		let subItems = [];	// this will hold the matching items
+		
+		for (let i = 0; i < allSubItems.length; i++) {
+			let subItem = allSubItems[i];
+			let subFilms = [].concat(subItem.films);	// all the films listed on the item
+			let matchFilm = subFilms.find(f => f === film.url);
+
+			// item has a film matching the current detail film
+			if (matchFilm) {
+				subItem.type = key;
+				subItems.push(subItem);
+			}
+		}
+		
+		// update the film with the matches
+		film[key] = subItems.length > 0 ? subItems : Constants.unknown;
+
+		this.setState({ item: film });
 	}
 }
 
