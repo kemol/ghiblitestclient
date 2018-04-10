@@ -9,9 +9,10 @@ export const styles = {
 	{
   	fontFamily: fontFamily,
   	backgroundColor: "#033922",
- 	 	color:      "#81AF9B",
   	padding: padding,
- 	 	margin: 0
+  	paddingBottom: 20,
+ 	 	margin: 0,
+ 	 	border: "1px solid #CBE6DA"
   },
   navLink:
   {
@@ -24,10 +25,18 @@ export const styles = {
   	backgroundColor: "#6E7F78",
  	 	color: "#CEF1E1"
   },
-  h:
+  h1:
   {
+  	color: "#CBE6DA",
   	margin: 0,
   	padding: padding,
+  },
+  h2:
+  {
+  	color: "#58786A",
+  	fontSize: ".9em",
+  	margin: 0,
+  	padding: "0 0 20px 20px",
   },
   h4: 
   {

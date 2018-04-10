@@ -5,8 +5,8 @@ import { styles } from '../styles/Styles';
 
 export const MenuContainer = () => (
 	<header style={styles.header}>
-		<h1 style={styles.h}>{Constants.headerMain}</h1>
-		<h2 style={styles.h}>{Constants.headerSub}</h2>
+		<h1 style={styles.h1}>{Constants.headerMain}</h1>
+		<h2 style={styles.h2}>{Constants.headerSub}</h2>
 		<nav>
 			<NavLink path={Constants.items.films} />
 			<NavLink path={Constants.items.people} />
