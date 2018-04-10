@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Constants } from '../Constants';
+import { NavLink } from '../components/NavLink';
+import { styles } from '../styles/Styles';
 
 export const MenuContainer = () => (
-	<header>
-		<h1>{Constants.headerMain}</h1>
-		<h2>{Constants.headerSub}</h2>
+	<header style={styles.header}>
+		<h1 style={styles.h}>{Constants.headerMain}</h1>
+		<h2 style={styles.h}>{Constants.headerSub}</h2>
 		<nav>
-     <Link to={`/${Constants.items.films}`}>{Constants.items.films}</Link>
-     <Link to={`/${Constants.items.people}`}>{Constants.items.people}</Link>
-     <Link to={`/${Constants.items.species}`}>{Constants.items.species}</Link>
-     <Link to={`/${Constants.items.locations}`}>{Constants.items.locations}</Link>
-     <Link to={`/${Constants.items.vehicles}`}>{Constants.items.vehicles}</Link>
+			<NavLink path={Constants.items.films} />
+			<NavLink path={Constants.items.people} />
+			<NavLink path={Constants.items.species} />
+			<NavLink path={Constants.items.locations} />
+			<NavLink path={Constants.items.vehicles} />
     </nav>
 	</header>
 );
