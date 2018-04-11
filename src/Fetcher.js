@@ -22,6 +22,8 @@ export class Fetcher {
       	for (let i = 0; i < result.length; i++) {
       		this.cleanItem(result[i]);
       	}
+      	
+      	this.sortResults(result);
 			} else {
 		 		if (path.includes(Constants.items.films)) {
 		 			await this.getFilmDetails(result);
@@ -58,6 +60,18 @@ export class Fetcher {
 				let index = item.url.lastIndexOf("/");
 				item.url = item.url.substring(0, index + 1) + item.id;
 			}
+		}
+	}
+
+	static sortResults(results) {
+		if (results.length > 0) {
+			let key = "name" in results[0] ? "name" : "title";
+			results.sort((a, b) => {
+				let titleA = a[key].replace(Constants.theRegex, "");
+				let titleB = b[key].replace(Constants.theRegex, "");
+				
+				return titleA.localeCompare(titleB);
+			});
 		}
 	}
 	
