@@ -15,7 +15,7 @@ export const styles = {
   	fontFamily: fontFamily,
   	backgroundColor: dark,
   	padding: padding,
-  	paddingBottom: 20,
+  	paddingBottom: 10,
  	 	margin: 0,
  	 	//border: "1px solid #CBE6DA"
   },
@@ -23,6 +23,11 @@ export const styles = {
   {
   	padding: padding,
   	color: middle,
+  	textDecoration: "none"
+  },
+  active: {
+  	backgroundColor: grey,
+  	color: light
   },
   section:
   {
@@ -40,7 +45,7 @@ export const styles = {
   	color: grey,
   	fontSize: ".9em",
   	margin: 0,
-  	padding: "0 0 20px 20px",
+  	padding: "0 0 30px 20px",
   },
   h4: 
   {
