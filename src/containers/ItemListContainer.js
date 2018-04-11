@@ -1,5 +1,6 @@
 import React from 'react';
 import { Constants } from '../Constants';
+import { Fetcher } from '../Fetcher';
 import { ItemList } from '../components/ItemList';
 
 export class ItemListContainer extends React.Component {
@@ -8,11 +9,10 @@ export class ItemListContainer extends React.Component {
 		this.state = { items: [] };
 	}
 	
-	fetchItems(path) {
-		const endpoint = `${Constants.apiBase}${path}`;
-  	fetch(endpoint)
-      .then(response => response.json())
-      .then(results => this.sortResults(results));
+	async fetchItems(path) {
+		Fetcher.fetch(path)
+    	.then(results => this.sortResults(results))
+			.catch(reason => console.log(reason.message));
 	}
 	
 	sortResults(results, up = true) {
