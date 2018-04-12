@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { styles } from '../styles/Styles';
 
@@ -8,5 +9,9 @@ export const ItemList = (props) => (
 	</ul>
 );
 
+ItemList.propTypes = {
+	items: PropTypes.arrayOf(PropTypes.object).isRequired,
+	path: PropTypes.string.isRequired
+};
 
 

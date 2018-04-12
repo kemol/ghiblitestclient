@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Constants } from '../Constants';
 import { SubItemList } from './SubItemList';
 import { styles } from '../styles/Styles';
@@ -25,4 +26,8 @@ export const ItemDetail = (props) => (
 		}
 	</ul>
 );
+
+ItemDetail.propTypes = {
+	item: PropTypes.object.isRequired
+};
 

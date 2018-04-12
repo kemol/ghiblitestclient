@@ -5,7 +5,7 @@ import { FilmContainer } from './FilmContainer';
 import { ItemContainer } from './ItemContainer';
 import { MenuContainer } from './MenuContainer';
 
-export const MainContainer = props => (
+export const MainContainer = () => (
 	<div>
 		<MenuContainer />
     <main>
