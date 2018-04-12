@@ -1,5 +1,6 @@
 import React from 'react';
 import { Constants } from '../Constants';
+import { ErrorDisplay } from '../components/ErrorDisplay';
 import { FilmList } from '../components/FilmList';
 import { ItemListContainer } from './ItemListContainer';
 import { ItemSorter } from '../components/ItemSorter';
@@ -46,6 +47,8 @@ export class FilmListContainer extends ItemListContainer {
 	}
 		
 	render(props) {
+		if (this.state.hasError) return <ErrorDisplay />;
+
 		return (
 			<div>
 				<div style={styles.sorter}>

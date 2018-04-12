@@ -173,5 +173,11 @@ export const styles = {
   dark: 
   {
   	color: dark
+  },
+  error:
+  {
+  	padding: padding,
+  	color: light,
+  	fontSize: "1.5em"
   }
  };

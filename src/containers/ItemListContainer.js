@@ -1,5 +1,6 @@
 import React from 'react';
 import { Constants } from '../Constants';
+import { ErrorDisplay } from '../components/ErrorDisplay';
 import { Fetcher } from '../Fetcher';
 import { ItemList } from '../components/ItemList';
 import { ItemSorter } from '../components/ItemSorter';
@@ -9,7 +10,7 @@ export class ItemListContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { items: [] };
+		this.state = { items: [], hasError: false };
 		this.titleKey = "name";
 		this.sortByTitle = this.sortByTitle.bind(this);
 	}
@@ -21,7 +22,10 @@ export class ItemListContainer extends React.Component {
  				this.currentSort = Constants.sort.titleDown;
    			this.sortByTitle();
     	})
-			.catch(reason => console.log(reason.message));
+			.catch(reason => {
+				console.log(reason.message);
+				this.setState({ hasError: true });
+			});
 	}
 	
 	sortByTitle() {
@@ -50,6 +54,8 @@ export class ItemListContainer extends React.Component {
 	}
 	
 	render() {
+		if (this.state.hasError) return <ErrorDisplay />;
+
 		return (
 			<div>
 				<div style={styles.sorter}>

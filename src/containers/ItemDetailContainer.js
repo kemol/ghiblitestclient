@@ -1,4 +1,5 @@
 import React from 'react';
+import { ErrorDisplay } from '../components/ErrorDisplay';
 import { Fetcher } from '../Fetcher';
 import { ItemDetail } from '../components/ItemDetail';
 
@@ -11,7 +12,10 @@ export class ItemDetailContainer extends React.Component {
 	async fetchDetail(path) {
 		Fetcher.fetch(path)
     	.then(item => this.setState({ item: item}))
-			.catch(reason => console.log(reason.message));
+			.catch(reason => {
+				console.log(reason.message);
+				this.setState({ hasError: true });
+			});
 	}
 
 	componentDidMount() {
@@ -25,6 +29,8 @@ export class ItemDetailContainer extends React.Component {
 	}
 	
 	render() {
+		if (this.state.hasError) return <ErrorDisplay />;
+
 		return <ItemDetail item={this.state.item} />;
 	}
 }

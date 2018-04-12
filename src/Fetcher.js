@@ -10,7 +10,7 @@ export class Fetcher {
 	static async fetch(path) {
 		path = path.startsWith("/") ? path : `/${path}`;
 		
-		if (path in this.cache) {			
+		if (path in this.cache) {
 			return this.cache[path];
 		} else {			
 			const endpoint = `${Constants.apiBase}${path}`;
