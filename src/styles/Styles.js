@@ -17,7 +17,6 @@ export const styles = {
   	padding: padding,
   	paddingBottom: 10,
  	 	margin: 0,
- 	 	//border: "1px solid #CBE6DA"
   },
   navLink:
   {

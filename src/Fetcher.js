@@ -11,18 +11,22 @@ export class Fetcher {
 		path = path.startsWith("/") ? path : `/${path}`;
 		
 		if (path in this.cache) {
+			// return cached value
 			return this.cache[path];
-		} else {			
+		} else {
+			// call api
 			const endpoint = `${Constants.apiBase}${path}`;
 
 	  	let result = await fetch(endpoint)
 	  		.then(response => response.json());
 	  	
     	if (Array.isArray(result)) {
+    		// fix data
       	for (let i = 0; i < result.length; i++) {
       		this.cleanItem(result[i]);
       	}
 			} else {
+				// get item details
 		 		if (path.includes(Constants.items.films)) {
 		 			await this.getFilmDetails(result);
 	  		} else {
@@ -30,6 +34,7 @@ export class Fetcher {
 	   		}
    		}
       
+      // cache result
       this.cache[path] = result;
       return result;
     }
@@ -39,6 +44,7 @@ export class Fetcher {
 	static cleanItem(item) {
 		this.updateUrl(item);
 		
+		// replace missing data items
 		for (let key in item) {
 			if (item[key] === "" || item[key] === Constants.todo) {
 				item[key] = Constants.unknown;
@@ -61,8 +67,7 @@ export class Fetcher {
 		}
 	}
 
-	// get lists of other item types
-	// match ids to get names
+	// get lists for matching keys
 	static async getItemDetails(item) {
 		this.cleanItem(item);
 
@@ -90,7 +95,7 @@ export class Fetcher {
 	}
 		
 	static async getAllItems(type, item, alias) {
-		let allItems = await this.fetch(type);//, this.setItemDetails, item, type, alias);
+		let allItems = await this.fetch(type);
 		this.setItemDetails(allItems, item, type, alias);
 	}
 
@@ -105,6 +110,7 @@ export class Fetcher {
 		}
 	}
 	
+	// replace url string with useful object
 	static setItemInfo(item, type, typeItems) {
 		let fullItem = typeItems.find(i => i.url === item);
 		return { id: fullItem.id, type: type, name: "name" in fullItem ? fullItem.name : fullItem.title };
