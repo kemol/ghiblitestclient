@@ -13,6 +13,14 @@ export const Constants = {
 	},
 	peopleAliases: ["people", "residents", "pilot"],
 	excludeKeys: ['id', 'url'],
-	theRegex: /^The /
+	theRegex: /^The /,
+	sort: { 
+		titleUp: 0,
+		titleDown: 1,
+		dateUp: 2,
+		dateDown: 3,
+		scoreUp: 4,
+		scoreDown: 5
+	}
 };
 

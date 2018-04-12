@@ -22,8 +22,6 @@ export class Fetcher {
       	for (let i = 0; i < result.length; i++) {
       		this.cleanItem(result[i]);
       	}
-      	
-      	this.sortResults(result);
 			} else {
 		 		if (path.includes(Constants.items.films)) {
 		 			await this.getFilmDetails(result);
@@ -63,18 +61,6 @@ export class Fetcher {
 		}
 	}
 
-	static sortResults(results) {
-		if (results.length > 0) {
-			let key = "name" in results[0] ? "name" : "title";
-			results.sort((a, b) => {
-				let titleA = a[key].replace(Constants.theRegex, "");
-				let titleB = b[key].replace(Constants.theRegex, "");
-				
-				return titleA.localeCompare(titleB);
-			});
-		}
-	}
-	
 	// get lists of other item types
 	// match ids to get names
 	static async getItemDetails(item) {
